@@ -1,0 +1,10 @@
+const CACHE='ooca-preview-v6';
+const ASSETS=["./", "./app.js?v=3", "./state.js?v=3", "./styles.css?v=3", "./index.html", "./styles.css", "./state.js", "./app.js", "./assets/close-icon.svg", "./assets/character-shadow.svg", "./assets/alert.svg", "./assets/back-icon.svg", "./assets/cancel-art.svg", "./assets/mood-sad.svg", "./assets/next-icon.svg", "./assets/ground-shadow.svg", "./assets/grass.png", "./assets/favicon.png", "./assets/mood-no-select.svg", "./assets/mood-try.svg", "./assets/play-store.svg", "./assets/help-icon.svg", "./assets/notice.svg", "./assets/download-art.svg", "./assets/app-store.svg", "./assets/feel.svg", "./assets/qr.png", "./assets/mood-calm.svg", "./assets/clock.svg", "./assets/phone.svg", "./assets/listen.svg", "./assets/restart-icon.svg", "./assets/mood-anxious.svg", "./assets/logo.svg", "./assets/contact-logo.svg", "./assets/welcome-art-v2.png", "./assets/welcome-logo.svg", "./assets/awareness.svg", "./assets/fonts/Prompt-Medium.ttf", "./assets/fonts/Prompt-SemiBold.ttf", "./assets/fonts/Prompt-Regular.ttf", "./assets/fonts/GothamRounded-Medium.otf", "./assets/fonts/Prompt-OFL.txt", "./assets/fonts/GothamRounded-Bold.otf", "./assets/fonts/GothamRounded-Book.otf"];
+self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting()));});
+self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('ooca-preview-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
+self.addEventListener('fetch',event=>{
+ if(event.request.method!=='GET'||new URL(event.request.url).origin!==self.location.origin)return;
+ const fresh=event.request.mode==='navigate'||/\.(?:js|css)$/.test(new URL(event.request.url).pathname);
+ const network=()=>fetch(event.request).then(response=>{if(response.ok){const copy=response.clone();caches.open(CACHE).then(c=>c.put(event.request,copy));}return response;});
+ event.respondWith(fresh?network().catch(()=>caches.match(event.request)):caches.match(event.request).then(hit=>hit||network()));
+});
