@@ -25,3 +25,152 @@ dialog{padding:0;background:transparent;box-shadow:none;border-radius:0;overflow
 
 /* A decoded original SVG is visible on the first frame; switch to the animated document only when ready. */
 .character-static{visibility:visible}.character-static[hidden]{display:none}.character-float object{visibility:hidden}.character-float object.ready{visibility:visible}
+
+/* Approved mobile revision, 2026-11-08. Keep desktop layout and intrinsic SVG geometry. */
+.welcome-marks{display:flex;flex-direction:column;align-items:center;gap:8px}
+.mobile-break{display:none}
+.character-scale{width:250px;height:250px;transform-origin:top left}
+:root{--color-card-default:rgb(255 255 255 / .6);--color-card-active:rgb(179 237 232 / .5);--color-card-border:#e0f8f6;--color-card-active-border:#80e2d9;--color-card-active-text:#00b6a3}
+.mood-card{background:var(--color-card-default);border-color:var(--color-card-border)}
+.mood-option input:checked+.mood-card,.mood-card.selected{background:var(--color-card-active);border-color:var(--color-card-active-border);color:var(--color-card-active-text)}
+.contact-card{background:var(--color-card-default);border-color:#f6f6f6}
+.dialog-close{background:var(--color-card-default)}
+.dialog-close::before{content:'';position:absolute;inset:-6px;border-radius:50%}
+.dialog-close .icon{width:32px;height:32px}
+@media(min-width:680px){.cancel-dialog h2 br{display:none}.cancel-dialog h2 br::after{content:' '}}
+@media(max-width:679px){
+ body{background-size:100% 800px}
+ #app{min-height:max(800px,100svh)}
+ .landscape{top:416px}
+ .header{margin-top:24px}
+ .screen{padding-top:56px;padding-bottom:106px}
+ .mobile-break{display:block}
+ .actions{width:min(328px,100%)}
+ .welcome-content{gap:32px}
+ .welcome-marks{gap:6.8144px}
+ .welcome-art{width:243.191px;height:104.598px}
+ .welcome-logo{width:220.366px;height:88.587px}
+ .welcome-visual{width:285.503px;max-width:100%;gap:8px}
+ .welcome-actions{margin-top:76px;gap:12px}
+ .welcome-actions .disclaimer{min-height:53px;display:flex;align-items:center;justify-content:center}
+ .grounding-content{width:min(312px,100%)}
+ .character-scene{width:224px;height:224px}
+ .character-scale{transform:scale(.896)}
+ .cloud-shadow{width:366.155px;height:63.5px;top:180px;object-fit:contain}
+ .ground-shadow{width:272px;height:74px;left:-24px;top:192px;transform:scale(.952381);transform-origin:top center}
+ body[data-view=awareness] .ground-shadow{transform:none}
+ .grounding-copy{margin-top:40px}
+ .grounding .actions{margin-top:78px}
+ .checkin-copy .subtitle{max-width:350px}
+ .mood-grid{width:310px;gap:16px}
+ .mood-card,.completion .summary-card{min-height:116px;padding:16px 20px;gap:12px}
+ .face-slot{width:48px;height:48px}
+ .face-slot>img{width:60px;height:60px;left:-6px;top:-6px}
+ .check-in .actions,.check-in:has(.checkin-copy .subtitle br) .actions{margin-top:44px}
+ .completion-content{width:min(350px,100%)}
+ .summary{width:350px;max-width:100%;margin-top:32px}
+ .summary-grid{padding:0 20px}
+ .completion .actions{margin-top:84px}
+ .help-copy>p{margin-top:12px}
+ .contact-list{margin-top:32px}
+ .contact-symbol .icon{width:20px;height:20px}
+ .help-actions{margin-top:52px;gap:12px}
+ .contact-ooca{min-height:53px}
+ dialog{width:min(320px,calc(100vw - 32px));max-height:calc(100svh - 32px)}
+ .dialog-art{height:160px}
+ .dialog-panel,.download-dialog .dialog-panel{padding:20px 24px}
+ .dialog-copy{padding:12px 0}
+ .dialog-panel h2,.download-dialog h2{margin:0 0 12px;font-size:24px;line-height:30px}
+ .dialog-actions{margin-top:20px;padding:0 16px}
+ .download-dialog .qr{margin:20px auto}
+ .store-badges{gap:12px;flex-wrap:nowrap;padding:8px 0}
+ .store-badges img{width:121.412px;height:36px}
+}
+@media(max-width:370px){
+ .grounding-copy h1{font-size:32px;line-height:38px}
+ .grounding-copy .small,.grounding-copy .subtitle{white-space:normal}
+ .help-copy h1{font-size:30px;line-height:40px}
+ .cloud-shadow{width:min(366.155px,calc(100vw - 8px))}
+ .dialog-panel,.download-dialog .dialog-panel{padding-left:20px;padding-right:20px}
+ .dialog-actions{padding:0 12px}
+ .dialog-panel h2{font-size:22px}
+ .store-badges img{width:116px;height:auto}
+}
+
+/* Desktop/tablet revision: 1440×800 Figma reference, flowing on shorter viewports. */
+@media(min-width:680px){
+ body{background-size:100% 800px}
+ #app{min-height:100svh}
+ .landscape{top:416px}
+ .header{margin-top:24px;width:calc(100% - 80px);max-width:1200px}
+ .screen{padding-top:56px;padding-bottom:max(24px,calc(100svh - 694px))}
+ .welcome-content{width:312px;gap:32px}
+ .welcome-marks{gap:6.8144px}
+ .welcome-art{width:243.191px;height:104.598px}
+ .welcome-logo{width:220.366px;height:88.587px}
+ .welcome-visual{width:285.503px;gap:8px}
+ .welcome-actions{margin-top:76px;gap:40px}
+ .grounding-content{width:312px}
+ .character-scene{width:224px;height:224px}
+ .character-scale{transform:scale(.896)}
+ .cloud-shadow{width:366.155px;height:63.5px;top:180px;object-fit:contain}
+ .ground-shadow{left:-24px;top:192px;transform:scale(.952381);transform-origin:top center}
+ body[data-view=awareness] .ground-shadow{transform:none}
+ .grounding-copy{margin-top:40px}
+ .grounding .actions{margin-top:78px}
+ .checkin-content{width:520px}
+ .mood-grid{width:480px;margin-top:32px;gap:16px}
+ .mood-card{min-height:116px;padding:16px 20px}
+ .face-slot{width:48px;height:48px}
+ .face-slot>img{width:60px;height:60px;left:-6px;top:-6px}
+ .check-in .actions,.check-in:has(.checkin-copy .subtitle br) .actions{margin-top:68px}
+ body[data-view=post] .check-in .actions{margin-top:44px}
+ .completion-content{width:520px}
+ .summary{width:520px;margin-top:32px}
+ .summary-grid{padding:0 20px}
+ .completion .actions{margin-top:84px}
+ .help-content{width:350px}
+ .help-copy>p{margin-top:12px}
+ .contact-list{margin-top:32px}
+ .contact-symbol .icon{width:20px;height:20px}
+ .help-actions{margin-top:52px;gap:12px}
+ .contact-ooca{min-height:53px}
+ dialog{width:min(440px,calc(100vw - 48px));max-height:calc(100svh - 32px)}
+ .cancel-dialog{width:min(480px,calc(100vw - 48px))}
+ .dialog-art{height:160px}
+ .dialog-panel,.download-dialog .dialog-panel{padding:20px 24px}
+ .cancel-dialog .dialog-panel{width:440px;max-width:100%;margin:0 auto}
+ .dialog-copy{padding:12px 0}
+ .dialog-panel h2,.download-dialog h2{margin:0 0 12px;font-size:24px;line-height:30px}
+ .dialog-actions{margin-top:20px;padding:0 16px}
+ .download-dialog .qr{margin:20px auto}
+ .store-badges{gap:12px;flex-wrap:nowrap;padding:8px 16px}
+ .store-badges img{width:134.902px;height:40px}
+}
+/* Landscape tablets and short desktop windows: reduce empty space, retain scrolling. */
+@media(min-width:680px) and (max-height:740px){
+ .header{margin-top:16px}
+ .screen{padding-top:24px;padding-bottom:24px}
+ .landscape{top:360px}
+ .grounding .actions{margin-top:40px}
+ .welcome-actions{margin-top:40px;gap:24px}
+ .check-in .actions,.check-in:has(.checkin-copy .subtitle br) .actions,
+ body[data-view=post] .check-in .actions{margin-top:32px}
+ .completion .actions{margin-top:40px}
+ .help-actions{margin-top:32px}
+}
+@media(min-width:680px){.landscape{height:min(384px,max(0px,calc(100svh - 416px)))}}
+@media(min-width:680px) and (max-height:740px){.landscape{height:min(384px,max(0px,calc(100svh - 360px)))}}
+@media(min-width:680px){body[data-view=post] .check-in:has(.checkin-copy .subtitle br) .actions{margin-top:44px}}
+@media(min-width:680px) and (max-height:740px){body[data-view=post] .check-in:has(.checkin-copy .subtitle br) .actions{margin-top:32px}}
+
+/* Use one desktop action row and one shared card width across both check-ins and summary. */
+@media(min-width:680px){
+ #main.screen{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(456px,auto) auto;justify-items:center;align-content:start;align-items:start}
+ #main.screen>.actions{margin-top:0}
+ #main.screen>.content{align-self:start}
+ .checkin-content,.completion-content{--mood-grid-width:480px;--mood-card-width:232px}
+ .mood-grid,.summary-grid{width:var(--mood-grid-width);max-width:100%;grid-template-columns:repeat(2,minmax(0,1fr));padding:0;margin-left:auto;margin-right:auto}
+ .mood-grid .mood-card,.summary-grid .mood-card{width:var(--mood-card-width);max-width:100%}
+}
+@media(min-width:680px) and (max-height:740px){#main.screen{grid-template-rows:minmax(448px,auto) auto}}
