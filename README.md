@@ -1,4 +1,4 @@
-# Pause with Ooca
+# Ooca grounding preview
 
 Static HTML/CSS/ES modules. No framework, backend, analytics or runtime API calls. The design source and approved interaction contract are in `docs/handoff/` and the referenced Figma file. Original asset exports and official Prompt fonts are local to `dist/assets/`.
 
@@ -38,7 +38,7 @@ Telephone links were inspected without placing calls. External service informati
 
 ## Source attribution
 
-Prompt: official google/fonts distribution, license in `dist/assets/fonts/Prompt-OFL.txt`. Gotham Rounded: user-supplied files. Illustrations, backgrounds, icons, QR, logos and store badges: user-provided Figma design. Static exports retain their original geometry and effects; Figma rendering references remain in the original development workspace and are not runtime assets.
+Prompt: official google/fonts distribution, license in `dist/assets/fonts/Prompt-OFL.txt`. Gotham Rounded: user-supplied files. Illustrations, backgrounds, icons, QR, logos and store badges: user-provided Figma design. Static exports retain their original geometry and effects; rendering references in `design-reference/` are development inputs, not runtime assets.
 
 ## Revision 2026-11-07
 
@@ -48,10 +48,23 @@ Replaced Pause with and favicon with user-supplied PNG files. Ghost hover keeps 
 
 The gradient is painted once over the 844px reference composition on a solid #F3FCFB base, so tall viewports and longer pages retain the same light color down to the bottom without a gradient restart or seam. Notice now uses symmetric ±16px travel on a continuous 4.8s sine loop, starting centered and crossing the center without a pause. This supersedes revision 2's asymmetric range and the original center-hold timing. Float and reduced-motion behavior are unchanged.
 
-## Hosting
+## Internal mobile preview — 2026-11-08
 
-Live site: https://pause-with-ooca.pages.dev/
+Approved Figma revision: mobile content starts at y=120, primary actions at y=576 on the 390×800 reference; shorter/narrower devices retain normal vertical scrolling. Welcome artwork is reduced; grounding scenes are 224px with clouds at y=300 and a 40px copy gap. Mood cards are 147×116px with 48px face slots. Completion spacing, 320px dialogs, 160px dialog artwork, close buttons, and Help card fills match the approved mobile design. Active mood fill is turquoise 100 at 50%, border #80e2d9, text #00b6a3; default and Help fills are white at 60%.
 
-Cloudflare Pages project: `pause-with-ooca`. The current release uses Direct Upload of the contents of `dist/` (no build step). GitHub stores source and tests; commits do not currently trigger automatic deployments.
+Validation: seven state tests pass. Browser checks covered 390×800 reference geometry, all four grounding cloud/action positions, both check-ins, deselection, Help origin return, Resume, both dialogs, Completion, 320×568 scrolling/overflow and desktop 1440px layout. No browser errors observed. This mobile revision was approved in the internal preview before release.
 
-To update, run `npm test`, then upload the contents of `dist/` as a ZIP in Cloudflare Pages > pause-with-ooca > Create deployment > Production. Keep `index.html` at the ZIP root. Do not upload this repository root as the website.
+## Internal desktop/tablet preview — 2026-11-08
+
+Desktop now follows the updated 1440×800 Figma references: 120px content origin, 224px grounding scene, 300px clouds, 576px primary actions, 520px check-in/completion content, and 232×116px mood cards. Cancel has a 480px outer frame and 440px panel; Download is 440px. Mobile below 680px retains the approved v4 geometry.
+
+Tablet widths use the desktop content sizes with responsive header margins. Below 741px viewport height, upper/CTA spacing compresses and content remains in normal flow with vertical scrolling as needed. Background decoration is clipped to the viewport so it does not create artificial scrolling on iPad landscape.
+
+Checks: seven state tests pass; browser geometry checked at 1440×800, 768×1024, 1024×768, 820×1180, 1180×820, 1024×600 and 390×800. All main journey screens, Help and both dialogs inspected. Approved for GitHub and Cloudflare release.
+
+Desktop preview follow-up: all primary action groups use the same grid row (y=576 on the 800px reference; y=528 on short windows). Pre/post check-ins and Completion share the same 480px grid and 232px card width. This revision was approved in the internal Site preview and released to Cloudflare Pages.
+
+## Production hosting
+
+https://pause-with-ooca.pages.dev/ — Cloudflare Pages Direct Upload of the contents of dist/. No build step. Run npm test before releasing. GitHub commits do not trigger automatic deployment.
+
